@@ -1,0 +1,155 @@
+@import "tailwindcss";
+
+/* ─────────────────────────────────────────────────────────────
+   TSWS 2027 design tokens
+   Brand kit: #39C463 (green) · #000000 · #FFFFFF · #8298AB (slate)
+   Extensions: paper (warm off-white) + ink (lifted black) for depth.
+   ───────────────────────────────────────────────────────────── */
+@theme {
+  --color-void: #000000;
+  --color-ink: #0a0b0a;
+  --color-ink-2: #141614;
+  --color-green: #39c463;
+  --color-green-ink: #0f3d1d;
+  --color-green-soft: #b9ecc8;
+  --color-slate: #8298ab;
+  --color-slate-ink: #4d6070;
+  --color-paper: #f0efe9;
+  --color-paper-2: #e4e3dc;
+  --color-white: #ffffff;
+
+  --font-display: var(--font-bricolage), "Arial Narrow", system-ui, sans-serif;
+  --font-sans: var(--font-inter), system-ui, sans-serif;
+  --font-mono: var(--font-jetbrains), ui-monospace, monospace;
+  --font-script: var(--font-dafoe), cursive;
+
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-in-out-quart: cubic-bezier(0.76, 0, 0.24, 1);
+
+  --animate-marquee: marquee var(--marquee-speed, 30s) linear infinite;
+  --animate-spin-slow: spin 18s linear infinite;
+  --animate-blink: blink 1.1s steps(1) infinite;
+
+  @keyframes marquee {
+    from { transform: translate3d(0, 0, 0); }
+    to { transform: translate3d(-50%, 0, 0); }
+  }
+  @keyframes blink {
+    50% { opacity: 0; }
+  }
+}
+
+@layer base {
+  html {
+    overflow-x: clip;
+    background: var(--color-void);
+    color: var(--color-white);
+    -webkit-text-size-adjust: 100%;
+    text-rendering: optimizeLegibility;
+  }
+  html.lenis, html.lenis body { height: auto; }
+  .lenis.lenis-smooth { scroll-behavior: auto !important; }
+  .lenis.lenis-stopped { overflow: hidden; }
+
+  body {
+    font-family: var(--font-sans);
+    background: var(--color-void);
+    overflow-x: clip;
+    -webkit-font-smoothing: antialiased;
+  }
+  ::selection { background: var(--color-green); color: var(--color-void); }
+
+  :focus-visible {
+    outline: 2px solid var(--color-green);
+    outline-offset: 3px;
+    border-radius: 2px;
+  }
+  .on-green :focus-visible, .on-green:focus-visible { outline-color: var(--color-void); }
+
+  h1, h2, h3, h4 { font-family: var(--font-display); text-wrap: balance; }
+  p { text-wrap: pretty; }
+}
+
+@layer components {
+  .eyebrow {
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    font-weight: 500;
+  }
+  .display-xl {
+    font-family: var(--font-display);
+    font-weight: 800;
+    letter-spacing: -0.045em;
+    line-height: 0.86;
+    font-variation-settings: "wdth" 85;
+  }
+  .container-x {
+    width: 100%;
+    margin-inline: auto;
+    padding-inline: clamp(1rem, 4vw, 3.5rem);
+    max-width: 1680px;
+  }
+  .stroke-text {
+    color: transparent;
+    -webkit-text-stroke: 1.5px currentColor;
+  }
+  .sr-only-focusable:not(:focus):not(:focus-within) {
+    position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0;
+  }
+}
+
+/* Film grain — one fixed layer, GPU friendly, pointer-transparent. */
+.grain {
+  pointer-events: none;
+  position: fixed;
+  inset: -50%;
+  z-index: 90;
+  opacity: 0.07;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  0 0 0 .9 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+  mix-blend-mode: overlay;
+}
+
+/* Dotted field texture (nod to design.webp) */
+.dot-field {
+  background-image: radial-gradient(circle at 1px 1px, rgb(0 0 0 / 0.14) 1px, transparent 0);
+  background-size: 22px 22px;
+}
+.dot-field-dark {
+  background-image: radial-gradient(circle at 1px 1px, rgb(255 255 255 / 0.09) 1px, transparent 0);
+  background-size: 22px 22px;
+}
+
+/* Intro overlay: CSS-only safety net. If JS never runs, it fades away by itself. */
+.intro-overlay { animation: intro-failsafe 0.6s ease 6s forwards; }
+html.intro-seen .intro-overlay, html:not(.js) .intro-overlay { display: none; }
+@keyframes intro-failsafe { to { opacity: 0; visibility: hidden; pointer-events: none; } }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+  .intro-overlay { display: none; }
+}
+
+/* Custom cursor only for fine pointers */
+@media (hover: hover) and (pointer: fine) {
+  html.has-cursor, html.has-cursor body, html.has-cursor a, html.has-cursor button, html.has-cursor [role="button"], html.has-cursor label { cursor: none !important; }
+}
+
+@keyframes morph {
+  0%, 100% { border-radius: 42% 58% 63% 37% / 45% 38% 62% 55%; transform: rotate(0deg) scale(1); }
+  33% { border-radius: 63% 37% 40% 60% / 58% 50% 50% 42%; transform: rotate(18deg) scale(1.04); }
+  66% { border-radius: 36% 64% 52% 48% / 40% 62% 38% 60%; transform: rotate(-12deg) scale(0.97); }
+}
+@keyframes float-y {
+  0%, 100% { transform: translateY(0) rotate(var(--r, 0deg)); }
+  50% { transform: translateY(-14px) rotate(calc(var(--r, 0deg) + 2deg)); }
+}
+
+/* No-JS safety: anything that animates in must still be visible. */
+html:not(.js) [data-anim] { opacity: 1 !important; transform: none !important; translate: none !important; clip-path: none !important; }
