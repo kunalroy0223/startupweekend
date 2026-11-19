@@ -4,7 +4,11 @@ import { nav, organiser, activeSocials } from "@/lib/site";
 import { footer } from "@/lib/content";
 import { Logo } from "@/components/ui/Logo";
 import { AssociationBadge } from "@/components/ui/AssociationBadge";
-import { IconArrowUpRight } from "@/components/ui/Icons";
+import {
+  IconInstagram,
+  IconLinkedIn,
+  IconYouTube,
+} from "@/components/ui/Icons";
 
 const footerLinkClass =
   "font-display text-2xl font-bold leading-tight tracking-tight text-white/85 transition-colors hover:text-green md:text-3xl";
@@ -62,22 +66,37 @@ export function SiteFooter() {
 
           {socials.length > 0 && (
             <div className="mt-8">
-              <h2 className="eyebrow text-white/60">Follow Inhub</h2>
+              <h2 className="eyebrow text-white/60">Social Links</h2>
 
-              <ul className="mt-4 flex flex-col gap-1">
-                {socials.map((social) => (
-                  <li key={social.label}>
-                    <a
-                      href={social.href}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className={`${footerLinkClass} group inline-flex items-center gap-2`}
-                    >
-                      {social.label}
-                      <IconArrowUpRight className="size-5 shrink-0 transition-transform group-hover:translate-x-1 group-hover:-translate-y-1" />
-                    </a>
-                  </li>
-                ))}
+              <ul className="mt-4 flex items-center gap-5">
+                {socials.map((social) => {
+                  const label = social.label.toLowerCase();
+
+                  const Icon = label.includes("instagram")
+                    ? IconInstagram
+                    : label.includes("linkedin")
+                      ? IconLinkedIn
+                      : label.includes("youtube")
+                        ? IconYouTube
+                        : null;
+
+                  if (!Icon) return null;
+
+                  return (
+                    <li key={social.label}>
+                      <a
+                        href={social.href}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        aria-label={social.label}
+                        title={social.label}
+                        className="inline-flex size-10 items-center justify-center text-white/70 transition-colors hover:text-green"
+                      >
+                        <Icon className="size-5" />
+                      </a>
+                    </li>
+                  );
+                })}
               </ul>
             </div>
           )}

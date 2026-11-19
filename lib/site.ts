@@ -75,10 +75,20 @@ export const nav: NavItem[] = [
  * Add the real profile URL to enable each link; until then it renders as text.
  */
 export const socials: { label: string; href: string | null }[] = [
-  { label: "Instagram", href: null },
-  { label: "LinkedIn", href: null },
-  { label: "YouTube", href: null },
+  {
+    label: "Instagram",
+    href: "https://www.instagram.com/inhub_ecellinspiria",
+  },
+  {
+    label: "LinkedIn",
+    href: "https://www.linkedin.com/company/inhub-entrepreneurship-cell-inspiria-knowledge-campus",
+  },
+  {
+    label: "YouTube",
+    href: "https://www.youtube.com/channel/UCdvefeTvqpkylqCnNbksYxg",
+  },
 ];
+
 export const activeSocials = () =>
   socials.filter(
     (s): s is { label: string; href: string } => Boolean(s.href)
