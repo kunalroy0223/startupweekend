@@ -7,7 +7,6 @@ import { pageMeta } from "@/lib/seo";
 import { organizationLd, websiteLd, eventLd, placeLd, graph } from "@/lib/seo";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { SmoothScroll } from "@/components/animation/SmoothScroll";
-import { IntroLoader, introBootScript } from "@/components/animation/IntroLoader";
 import { Cursor } from "@/components/animation/Cursor";
 import { SiteNav } from "@/components/layout/SiteNav";
 import { SiteFooter } from "@/components/layout/SiteFooter";
@@ -56,16 +55,11 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en-IN" className={`${display.variable} ${sans.variable} ${mono.variable} ${script.variable}`} suppressHydrationWarning>
       <head>
-        <Script
-            id="intro-boot"
-            strategy="beforeInteractive"
-            dangerouslySetInnerHTML={{ __html: introBootScript }}
-          />
+
         <JsonLd data={graph(organizationLd, websiteLd, placeLd, eventLd)} />
       </head>
       <body className="bg-void text-white">
         <SmoothScroll>
-          <IntroLoader />
           <SiteNav />
           <main id="main" tabIndex={-1} className="outline-none">
             {children}

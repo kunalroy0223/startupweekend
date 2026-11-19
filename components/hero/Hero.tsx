@@ -1,12 +1,11 @@
 "use client";
 
 import { motion, useMotionValue, useSpring, useTransform } from "framer-motion";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef } from "react";
 import { home } from "@/lib/content";
 import { event, venue } from "@/lib/site";
 import { getGsap } from "@/lib/gsap";
 import { useIsomorphicLayoutEffect } from "@/hooks/useIsomorphicLayoutEffect";
-import { onIntroDone } from "@/components/animation/IntroLoader";
 import { TicketButton } from "@/components/ui/TicketButton";
 import { Spark } from "@/components/illustrations/Glyphs";
 import { IdeaCanvas, type IdeaHandle } from "./IdeaCanvas";
@@ -31,7 +30,7 @@ const bubbleTone = {
 export function Hero() {
   const root = useRef<HTMLElement>(null);
   const idea = useRef<IdeaHandle | null>(null);
-  const [live, setLive] = useState(false);
+  const live = true;
 
   // cursor parallax (desktop) — springs feed CSS transforms only
   const px = useMotionValue(0);
@@ -43,7 +42,6 @@ export function Hero() {
   const frontX = useTransform(sx, (v) => v * 26);
   const frontY = useTransform(sy, (v) => v * 16);
 
-  useEffect(() => onIntroDone(() => setLive(true)), []);
 
   useEffect(() => {
     const onMove = (e: PointerEvent) => {
