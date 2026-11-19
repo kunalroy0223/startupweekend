@@ -6,7 +6,7 @@
 export const home = {
   hero: {
     association: "IN ASSOCIATION WITH GOOGLE FOR STARTUPS",
-    eyebrow: "7TH EDITION · TECHSTARS STARTUP WEEKEND",
+    eyebrow: "7TH EDITION",
     title: "Got a startup idea? Let's see you cook.",
     sub: "Take your idea beyond the group chat and build with AI.",
     closer: "Your 54 hours are getting closer.",
@@ -206,14 +206,13 @@ export const tickets = {
   ticketTitle: "Your Ticket",
   per: "PER PARTICIPANT",
   includedTitle: "What's Included?",
-  included: [
-    "Access to all three days",
-    "Participation in the 54-hour programme",
-    "Scheduled mentorship sessions",
-    "Designated event workspace",
-    "Team activities and collaboration",
-    "Final presentation opportunity",
-  ],
+included: [
+  "3-day in-campus stay (WiFi, washroom, shower, sleeping pods, desks with systems)",
+  "Access to the lounge area",
+  "3 meals a day, tea / coffee and snacks",
+  "Certificate powered by Google for Startups",
+  "Other WOW benefits",
+],
   status: "COMING SOON",
   statusTitle: "Registration opens soon.",
   statusBody: "We're getting things ready. Official registration details will be announced here.",

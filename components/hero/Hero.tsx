@@ -10,8 +10,9 @@ import { onIntroDone } from "@/components/animation/IntroLoader";
 import { TicketButton } from "@/components/ui/TicketButton";
 import { Spark } from "@/components/illustrations/Glyphs";
 import { IdeaCanvas, type IdeaHandle } from "./IdeaCanvas";
-import { DaysToGo } from "./DaysToGo";
+import { Countdown } from "./Countdown";
 import { cn } from "@/lib/cn";
+import { AssociationBadge } from "@/components/ui/AssociationBadge";
 
 /** Decorative "group chat" fragments — the ideas the hero pulls into the build. */
 const bubbles = [
@@ -134,7 +135,7 @@ export function Hero() {
           transition={{ duration: 0.8, delay: 0.1 }}
           className="flex flex-col gap-2 md:flex-row md:items-center md:justify-between"
         >
-          <p className="eyebrow text-white/70">{home.hero.association}</p>
+          <AssociationBadge size="md" />
           <p className="eyebrow flex items-center gap-2 text-green">
             <Spark className="size-3" />
             {home.hero.eyebrow}
@@ -205,8 +206,7 @@ export function Hero() {
 
           <div className="flex flex-col items-start gap-4 sm:items-end lg:col-span-4">
             <TicketButton size="lg" source="hero" />
-            <DaysToGo />
-          </div>
+        <Countdown className="w-full max-w-sm" />          </div>
         </motion.div>
       </div>
 

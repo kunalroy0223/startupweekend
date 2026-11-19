@@ -56,7 +56,11 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en-IN" className={`${display.variable} ${sans.variable} ${mono.variable} ${script.variable}`} suppressHydrationWarning>
       <head>
-        <script dangerouslySetInnerHTML={{ __html: introBootScript }} />
+        <Script
+            id="intro-boot"
+            strategy="beforeInteractive"
+            dangerouslySetInnerHTML={{ __html: introBootScript }}
+          />
         <JsonLd data={graph(organizationLd, websiteLd, placeLd, eventLd)} />
       </head>
       <body className="bg-void text-white">

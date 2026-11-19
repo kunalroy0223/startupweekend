@@ -12,6 +12,12 @@ export const pageMeta = {
     description:
       "Turn your startup idea into action at Techstars Startup Weekend Siliguri 2027. Build with AI, find your team and create in 54 hours, 16–18 April at Inspiria Knowledge Campus.",
   },
+  people: {
+  path: "/people",
+  title: "People | Techstars Startup Weekend Siliguri 2027",
+  description:
+    "Meet the facilitators, mentors, organising team and Inhub team behind Techstars Startup Weekend Siliguri 2027 at Inspiria Knowledge Campus, Siliguri.",
+},
   schedule: {
     path: "/schedule",
     title: "Event Schedule | Techstars Startup Weekend Siliguri 2027",

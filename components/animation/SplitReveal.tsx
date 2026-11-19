@@ -8,6 +8,8 @@ type Props = {
   as?: ElementType;
   className?: string;
   wordClassName?: string;
+  /** Extra space inside each word mask; useful for script fonts with deep swashes. */
+  maskClassName?: string;
   /** Stagger between words in ms. */
   stagger?: number;
   delay?: number;
@@ -20,7 +22,17 @@ type Props = {
  * Word-by-word mask reveal. Text stays real, selectable and crawlable:
  * words are only wrapped in spans and moved with CSS transforms.
  */
-export function SplitReveal({ text, as: Tag = "span", className, wordClassName, stagger = 55, delay = 0, immediate, id }: Props) {
+export function SplitReveal({
+  text,
+  as: Tag = "span",
+  className,
+  wordClassName,
+  maskClassName,
+  stagger = 55,
+  delay = 0,
+  immediate,
+  id,
+}: Props) {
   const ref = useRef<HTMLElement>(null);
   const [shown, setShown] = useState(false);
 
@@ -49,7 +61,12 @@ export function SplitReveal({ text, as: Tag = "span", className, wordClassName, 
     <Tag ref={ref} id={id} className={cn(className)} data-shown={shown || undefined}>
       {words.map((w, i) => (
         <Fragment key={i}>
-          <span className="inline-block overflow-hidden pb-[0.08em] -mb-[0.08em] align-bottom">
+          <span
+            className={cn(
+              "inline-block overflow-hidden pb-[0.08em] -mb-[0.08em] align-bottom",
+              maskClassName,
+            )}
+          >
             <span
               data-anim
               className={cn(

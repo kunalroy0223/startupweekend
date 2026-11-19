@@ -22,6 +22,9 @@ export const event = {
   endDate: "2027-04-18",
   /** Start of Day 01 in local time (IST), used only for the "days to go" counter. */
   startsAtIso: "2027-04-16T00:00:00+05:30",
+  timeZone: "Asia/Kolkata",
+  startsAt: "2027-04-16T00:00:00+05:30",
+  endsAt: "2027-04-18T23:59:59+05:30",
   association: "In association with Google for Startups",
   programmeAssociation: ["Techstars", "Google for Startups"],
   ticketPrice: 1500,
@@ -35,7 +38,7 @@ export const organiser = {
   name: "Inhub E-Cell",
   parent: "Inspiria Knowledge Campus",
   full: "Inhub E-Cell, Inspiria Knowledge Campus",
-  email: "contact@startupweekend.sbs",
+  email: "inhub@inspiria.edu.in",
   phone: "+91 7063080322",
   phoneHref: "tel:+917063080322",
 } as const;
@@ -60,10 +63,11 @@ export type NavItem = { href: string; label: string; index: string };
 
 export const nav: NavItem[] = [
   { href: "/", label: "Home", index: "01" },
-  { href: "/schedule", label: "Schedule", index: "02" },
-  { href: "/faqs", label: "FAQs", index: "03" },
-  { href: "/tickets", label: "Tickets", index: "04" },
-  { href: "/contact", label: "Contact", index: "05" },
+  { href: "/people", label: "People", index: "02" },
+  { href: "/schedule", label: "Schedule", index: "03" },
+  { href: "/faqs", label: "FAQs", index: "04" },
+  { href: "/tickets", label: "Tickets", index: "05" },
+  { href: "/contact", label: "Contact", index: "06" },
 ];
 
 /**
@@ -75,3 +79,14 @@ export const socials: { label: string; href: string | null }[] = [
   { label: "LinkedIn", href: null },
   { label: "YouTube", href: null },
 ];
+export const activeSocials = () =>
+  socials.filter(
+    (s): s is { label: string; href: string } => Boolean(s.href)
+  );
+  /** Official Google for Startups logo. */
+export const associationLogo = {
+  src: "/partners/google-for-startups.png",
+  alt: "Google for Startups",
+  width: 913,
+  height: 117,
+} as const;

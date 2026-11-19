@@ -49,13 +49,19 @@ export function TicketObject() {
           {/* main */}
           <div className="relative min-w-0 p-5 sm:p-7 md:p-10">
             <div className="flex items-start justify-between gap-4">
-              <div className="bg-void px-3 py-2">
-                <Logo tone="dark" className="h-10 w-auto md:h-12" />
+              <div className="bg-transparent px-3 py-2">
+                <Logo tone="light" className="h-10 w-auto md:h-12" />
               </div>
-              <p className="font-mono text-[0.65rem] uppercase tracking-[0.2em] text-void/60">Admit one · {event.themeShort}</p>
+              <p className="font-mono text-[0.65rem] uppercase tracking-[0.2em] text-void/60">
+                Admit one · {event.themeShort}
+              </p>
             </div>
-            <p className="mt-10 font-display text-[clamp(3.6rem,13vw,11rem)] font-extrabold leading-[0.8] tracking-[-0.06em]">{event.ticketPriceLabel}</p>
+
+            <p className="mt-10 font-display text-[clamp(3.6rem,13vw,11rem)] font-extrabold leading-[0.8] tracking-[-0.06em]">
+              {event.ticketPriceLabel}
+            </p>
             <p className="eyebrow mt-3 text-void">{tickets.per}</p>
+
             <dl className="mt-8 grid grid-cols-2 gap-4 border-t-2 border-dashed border-void/30 pt-5 font-mono text-xs uppercase tracking-[0.12em]">
               <div>
                 <dt className="text-void/70">Dates</dt>
@@ -63,15 +69,23 @@ export function TicketObject() {
               </div>
               <div>
                 <dt className="text-void/70">Venue</dt>
-                <dd className="mt-1 font-semibold">{venue.name}, {venue.locality}</dd>
+                <dd className="mt-1 font-semibold">
+                  {venue.name}, {venue.locality}
+                </dd>
               </div>
             </dl>
           </div>
+
           {/* stub */}
           <div className="relative flex w-20 flex-col items-center justify-between border-l-2 border-dashed border-void/40 bg-green py-8 md:w-28">
-            <span className="font-mono text-[0.6rem] tracking-widest [writing-mode:vertical-rl]">EDITION 07</span>
-            <span className="font-display text-3xl font-extrabold [writing-mode:vertical-rl] md:text-4xl">54 HRS</span>
+            <span className="font-mono text-[0.6rem] tracking-widest [writing-mode:vertical-rl]">
+              EDITION 07
+            </span>
+            <span className="font-display text-3xl font-extrabold [writing-mode:vertical-rl] md:text-4xl">
+              54 HRS
+            </span>
           </div>
+
           <motion.span
             aria-hidden="true"
             className="pointer-events-none absolute inset-y-0 w-1/3 -skew-x-12 bg-gradient-to-r from-transparent via-white/50 to-transparent mix-blend-soft-light"

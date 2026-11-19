@@ -153,3 +153,79 @@ html.intro-seen .intro-overlay, html:not(.js) .intro-overlay { display: none; }
 
 /* No-JS safety: anything that animates in must still be visible. */
 html:not(.js) [data-anim] { opacity: 1 !important; transform: none !important; translate: none !important; clip-path: none !important; }
+/* People page — V1-compatible surface styles */
+
+@layer components {
+  .surface-light {
+    background: var(--color-paper);
+    color: var(--color-void);
+  }
+
+  .surface-green {
+    background: var(--color-green);
+    color: var(--color-void);
+  }
+
+  .card {
+    background: linear-gradient(
+      180deg,
+      rgb(255 255 255 / 0.05),
+      rgb(255 255 255 / 0.015)
+    );
+    border: 1px solid rgb(255 255 255 / 0.09);
+    border-radius: 1rem;
+  }
+
+  .card-light {
+    background: var(--color-paper-2);
+    color: var(--color-void);
+    border: 1px solid rgb(0 0 0 / 0.08);
+    border-radius: 1rem;
+  }
+
+  .card-hover {
+    transition:
+      border-color 0.5s ease,
+      background-color 0.5s ease,
+      transform 0.5s ease;
+  }
+
+  .card-hover:hover {
+    border-color: rgb(57 196 99 / 0.4);
+    transform: translateY(-3px);
+  }
+
+  .text-green-deep {
+    color: var(--color-green-ink);
+  }
+
+  .bg-ink-3 {
+    background: var(--color-ink-2);
+  }
+
+  .glass {
+    background: rgb(255 255 255 / 0.06);
+    border: 1px solid rgb(255 255 255 / 0.1);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+  }
+
+  .grid-field {
+    background-image:
+      linear-gradient(rgb(255 255 255 / 0.04) 1px, transparent 1px),
+      linear-gradient(90deg, rgb(255 255 255 / 0.04) 1px, transparent 1px);
+    background-size: 64px 64px;
+  }
+
+  .text-gradient {
+    background: linear-gradient(
+      100deg,
+      #ffffff 10%,
+      #b9ecc8 55%,
+      #39c463 95%
+    );
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+}

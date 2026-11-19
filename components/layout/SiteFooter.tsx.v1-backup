@@ -1,0 +1,74 @@
+import Link from "next/link";
+import { event, nav, organiser, activeSocials, venue } from "@/lib/site";
+import { footer } from "@/lib/content";
+import { Logo } from "@/components/ui/Logo";
+import { AssociationBadge } from "@/components/ui/AssociationBadge";
+import { IconArrowUpRight } from "@/components/ui/Icons";
+
+export function SiteFooter() {
+  const socials = activeSocials();
+  return (
+    <footer className="relative overflow-hidden bg-void text-white">
+      <div aria-hidden="true" className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-white/15 to-transparent" />
+      <div className="container-x relative z-10 grid gap-12 pb-10 pt-20 md:grid-cols-12 md:pt-24">
+        <div className="md:col-span-5">
+          <Logo className="h-16 w-auto md:h-20" />
+          <p className="mt-6 max-w-sm font-display text-2xl font-bold leading-tight tracking-tight md:text-3xl">{footer.tagline}</p>
+          <AssociationBadge size="sm" className="mt-6" />
+        </div>
+
+        <nav aria-label="Footer" className="md:col-span-3 md:col-start-7">
+          <h2 className="eyebrow text-white/60">Explore</h2>
+          <ul className="mt-4 grid grid-cols-2 gap-x-6 gap-y-2 md:grid-cols-1">
+            {nav.map((n) => (
+              <li key={n.href}>
+                <Link href={n.href} className="text-lg text-white/85 transition-colors hover:text-green">
+                  {n.label}
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </nav>
+
+        <div className="min-w-0 md:col-span-3">
+          <h2 className="eyebrow text-white/60">Contact</h2>
+          <p className="mt-4">
+            <a href={`mailto:${organiser.email}`} className="break-all text-lg text-white/85 underline decoration-white/25 underline-offset-4 hover:text-green hover:decoration-green">
+              {organiser.email}
+            </a>
+          </p>
+          <p className="mt-2">
+            <a href={organiser.phoneHref} className="text-lg text-white/85 hover:text-green">
+              {organiser.phone}
+            </a>
+          </p>
+          <p className="mt-4 text-sm text-white/60">
+            {event.dates}
+            <br />
+            {venue.name}, {venue.locality}
+          </p>
+          {socials.length ? (
+            <ul className="mt-4 flex flex-wrap gap-4">
+              {socials.map((s) => (
+                <li key={s.label}>
+                  <a href={s.href} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1 text-sm text-white/80 hover:text-green">
+                    {s.label} <IconArrowUpRight className="size-3.5" />
+                  </a>
+                </li>
+              ))}
+            </ul>
+          ) : null}
+        </div>
+      </div>
+
+      <div className="container-x relative z-10 flex flex-col gap-2 border-t border-white/10 py-6 text-sm text-white/60 md:flex-row md:items-center md:justify-between">
+        <p>Organised by {organiser.full}.</p>
+        <p>{footer.copyright}</p>
+      </div>
+
+      <div aria-hidden="true" className="pointer-events-none relative -mb-[0.2em] select-none overflow-hidden text-center">
+        <span data-t="54 HOURS" className="font-display text-[clamp(6rem,22vw,26rem)] font-extrabold leading-[0.8] tracking-[-0.06em] text-white/[0.05] before:content-[attr(data-t)]" />
+      </div>
+    </footer>
+  );
+}

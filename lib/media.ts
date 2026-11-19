@@ -1,45 +1,31 @@
-/**
- * Previous-edition highlights.
- *
- * No previous-edition photographs or videos were supplied with the project, so
- * every slot below is an honest PLACEHOLDER: the gallery renders an abstract,
- * clearly-labelled art tile instead of a fake "event photo".
- *
- * To publish real media:
- *   1. Put files in /public/media/highlights/ (photos: .jpg/.webp, videos: .mp4).
- *   2. Set `src` (photo or video poster) and, for videos, `video` on the slot.
- *   3. Update `alt` so it describes what is actually in the photo.
- * The layout (`span`) controls the tile's footprint in the masonry wall.
- */
 
 export type MediaKind = "photo" | "video";
 
 export type HighlightSlot = {
   id: string;
   kind: MediaKind;
-  /** What this slot is meant to show (brief §2, Previous Edition Highlights). */
   caption: string;
   alt: string;
-  /** Real photo, or poster frame for a video. Leave undefined for a placeholder. */
   src?: string;
-  /** Real video file (mp4) or a YouTube embed URL. */
   video?: string;
   width?: number;
   height?: number;
-  /** Footprint in the 12-column desktop wall: [colSpan, rowSpan]. */
   span: [number, number];
-  /** Footprint on tablet/mobile 6-column wall. */
   spanSm: [number, number];
-  /** Placeholder art seed: changes the generative composition. */
   seed: number;
 };
+
+const photos = "/archive-assets/photos";
+const videos = "/archive-assets/videos";
+const posters = "/archive-assets/posters";
 
 export const highlights: HighlightSlot[] = [
   {
     id: "defining-moment",
     kind: "photo",
-    caption: "A defining moment from the previous edition",
-    alt: "Placeholder for a feature photograph from the previous edition",
+    caption: "The people behind the ideas",
+    alt: "Group of Startup Weekend participants gathered together",
+    src: `${photos}/DSC_1201.jpg`,
     span: [7, 5],
     spanSm: [6, 4],
     seed: 1,
@@ -47,17 +33,20 @@ export const highlights: HighlightSlot[] = [
   {
     id: "pitching",
     kind: "photo",
-    caption: "Participants pitching their ideas",
-    alt: "Placeholder for a portrait photograph of a participant pitching",
+    caption: "Ideas take the stage",
+    alt: "Participant presenting an idea during a pitch session",
+    src: `${photos}/DSC_0926.jpg`,
     span: [5, 7],
     spanSm: [3, 5],
     seed: 2,
   },
   {
-    id: "aftermovie",
+    id: "event-film",
     kind: "video",
-    caption: "Previous edition aftermovie",
-    alt: "Placeholder for the previous edition aftermovie",
+    caption: "The Startup Weekend experience",
+    alt: "Video highlight from a previous Startup Weekend",
+    src: `${posters}/video1.jpg`,
+    video: `${videos}/video1.mp4`,
     span: [7, 4],
     spanSm: [3, 3],
     seed: 3,
@@ -65,17 +54,19 @@ export const highlights: HighlightSlot[] = [
   {
     id: "collaborating",
     kind: "photo",
-    caption: "Teams collaborating and building",
-    alt: "Placeholder for a landscape photograph of teams collaborating",
+    caption: "Building together",
+    alt: "Participants working together during a Startup Weekend session",
+    src: `${photos}/DSC_0823.jpg`,
     span: [5, 3],
     spanSm: [3, 2],
     seed: 4,
   },
   {
-    id: "mentorship",
+    id: "community",
     kind: "photo",
-    caption: "Mentorship and team interactions",
-    alt: "Placeholder for a photograph of a mentorship session",
+    caption: "Beyond the sessions",
+    alt: "Participants sharing an informal moment at the event",
+    src: `${photos}/DSC_0670.jpg`,
     span: [3, 3],
     spanSm: [3, 2],
     seed: 5,
@@ -83,8 +74,9 @@ export const highlights: HighlightSlot[] = [
   {
     id: "celebration",
     kind: "photo",
-    caption: "Group photograph and final celebration",
-    alt: "Placeholder for the group photograph from the final celebration",
+    caption: "A moment worth celebrating",
+    alt: "Team celebrating an achievement on stage",
+    src: `${photos}/DSC_1169.jpg`,
     span: [6, 4],
     spanSm: [6, 3],
     seed: 6,
@@ -92,12 +84,56 @@ export const highlights: HighlightSlot[] = [
   {
     id: "behind-the-scenes",
     kind: "video",
-    caption: "Participant experiences and behind the scenes",
-    alt: "Placeholder for a behind-the-scenes participant video",
+    caption: "Behind the scenes",
+    alt: "Behind-the-scenes video from a previous edition",
+    src: `${posters}/video2.jpg`,
+    video: `${videos}/video2.mp4`,
     span: [3, 4],
     spanSm: [6, 3],
     seed: 7,
   },
+  {
+    id: "workshops",
+    kind: "photo",
+    caption: "Learning through action",
+    alt: "Facilitator engaging participants during a workshop",
+    src: `${photos}/DSC_0423.jpg`,
+    span: [4, 4],
+    spanSm: [3, 3],
+    seed: 8,
+  },
+  {
+    id: "mentorship",
+    kind: "photo",
+    caption: "Guidance and mentorship",
+    alt: "Speaker addressing participants during an event session",
+    src: `${photos}/DSC_9668.jpg`,
+    span: [4, 3],
+    spanSm: [3, 3],
+    seed: 9,
+  },
+  {
+    id: "audience",
+    kind: "photo",
+    caption: "A room full of possibilities",
+    alt: "Audience attending a Startup Weekend session",
+    src: `${photos}/DSC_9992.jpg`,
+    span: [4, 3],
+    spanSm: [3, 3],
+    seed: 10,
+  },
+  {
+    id: "pitch-highlights",
+    kind: "video",
+    caption: "Moments from the pitch floor",
+    alt: "Video highlights from a previous Startup Weekend",
+    src: `${posters}/video3-20s.jpg`,
+    video: `${videos}/video3.mp4`,
+    span: [4, 4],
+    spanSm: [6, 3],
+    seed: 11,
+  },
 ];
 
-export const hasRealMedia = (s: HighlightSlot) => Boolean(s.src || s.video);
+export const hasRealMedia = (s: HighlightSlot) =>
+  Boolean(s.src || s.video);

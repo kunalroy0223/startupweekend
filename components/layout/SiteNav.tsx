@@ -4,12 +4,10 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { AnimatePresence, motion, useMotionValueEvent, useScroll } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
-import { nav, event, organiser } from "@/lib/site";
+import { nav, event,} from "@/lib/site";
 import { Logo } from "@/components/ui/Logo";
-import { TicketButton } from "@/components/ui/TicketButton";
 import { useLenis } from "@/components/animation/SmoothScroll";
 import { cn } from "@/lib/cn";
-import { Spark } from "@/components/illustrations/Glyphs";
 
 export function SiteNav() {
   const pathname = usePathname();
@@ -58,7 +56,7 @@ export function SiteNav() {
           <Link
             href="/"
             aria-label={`${event.name} — home`}
-            className="pointer-events-auto relative block bg-void px-3 py-2 [clip-path:polygon(0_0,100%_0,94%_100%,0_100%)] pr-6"
+            className="pointer-events-auto relative block px-0 py-0"
           >
             <Logo tone="dark" priority className="h-9 w-auto md:h-11" />
           </Link>
@@ -94,9 +92,6 @@ export function SiteNav() {
           </nav>
 
           <div className="pointer-events-auto flex items-center gap-3">
-            <div className="hidden sm:block">
-              <TicketButton size="md" source="nav" />
-            </div>
             <button
               ref={menuBtn}
               type="button"
@@ -156,21 +151,6 @@ export function SiteNav() {
                 })}
               </ul>
             </nav>
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 0.6 }}
-              className="container-x flex flex-col gap-5 border-t border-white/10 py-6"
-            >
-              <TicketButton source="mobile-menu" />
-              <div className="flex flex-wrap items-center gap-x-4 gap-y-1 font-mono text-xs uppercase tracking-widest text-white/60">
-                <Spark className="size-3 text-green" />
-                <span>{event.dates}</span>
-                <a href={`mailto:${organiser.email}`} className="text-white/80 underline-offset-4 hover:underline">
-                  {organiser.email}
-                </a>
-              </div>
-            </motion.div>
           </motion.div>
         ) : null}
       </AnimatePresence>

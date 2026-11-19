@@ -16,11 +16,11 @@ const clips = [
   "polygon(0 4%,98% 0,100% 96%,2% 100%)",
 ];
 const panelTone = [
-  "bg-void text-white [--g-shadow:#39c463] [--g-alt:#f0efe9]",
+  "bg-paper text-void [--g-shadow:#39c463] [--g-alt:#f0efe9]",
   "bg-green text-void on-green",
-  "bg-paper-2 text-void",
+  "bg-[#DCE7F2] text-void",
   "bg-slate text-void",
-  "bg-void text-white [--g-shadow:#39c463]",
+  "bg-green-soft text-void [--g-shadow:#39c463]",
 ];
 
 /**
@@ -73,9 +73,9 @@ export function Journey() {
     <div ref={wrap} className="relative overflow-hidden pb-20 lg:flex lg:h-[100svh] lg:flex-col lg:justify-center lg:pb-0">
       <div className="container-x mb-8 flex items-end justify-between gap-6 lg:mb-10">
         <h3 className="font-display text-[clamp(2rem,4vw,3.8rem)] font-extrabold tracking-tight">{home.about.journeyTitle}</h3>
-        <div className="hidden h-[3px] w-1/3 bg-void/15 lg:block" aria-hidden="true">
-          <div data-journey-progress className="h-full origin-left scale-x-0 bg-void" />
-        </div>
+          <div className="hidden h-[3px] w-1/3 bg-white/15 lg:block">
+            <div data-journey-progress className="h-full origin-left scale-x-0 bg-green" />
+          </div>
       </div>
 
       <ol ref={track} className="container-x flex flex-col gap-4 lg:w-max lg:flex-row lg:gap-6 lg:pr-[20vw]">
